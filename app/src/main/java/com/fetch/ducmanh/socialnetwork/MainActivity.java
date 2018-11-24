@@ -29,7 +29,19 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemReselectedListener(navigationItemReselectedListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+        Bundle intent = getIntent().getExtras();
+        if (intent != null) {
+            String publisher = intent.getString("publisherid");
+            SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
+            editor.putString("profileid", publisher);
+            editor.apply();
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+        }else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        }
+
+
     }
 
 
@@ -46,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.nav_add:
                     selectedFragment = null;
-                    startActivity(new Intent(MainActivity.this,PostActivity.class));
+                    startActivity(new Intent(MainActivity.this, PostActivity.class));
                     break;
                 case R.id.nav_heart:
                     selectedFragment = new NotificationFragment();
