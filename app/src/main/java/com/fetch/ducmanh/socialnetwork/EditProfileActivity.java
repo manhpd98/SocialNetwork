@@ -125,7 +125,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 updateProfile(fullname.getText().toString(),
                         username.getText().toString(),
                         bio.getText().toString());
-                finish();
+                Toast.makeText(this, "Bạn đã sửa thành công!!", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
