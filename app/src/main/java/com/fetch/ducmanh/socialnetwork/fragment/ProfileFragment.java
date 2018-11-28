@@ -2,6 +2,7 @@ package com.fetch.ducmanh.socialnetwork.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.fetch.ducmanh.socialnetwork.EditProfileActivity;
 import com.fetch.ducmanh.socialnetwork.R;
 import com.fetch.ducmanh.socialnetwork.adapter.MyFotoAdapter;
 import com.fetch.ducmanh.socialnetwork.model.Post;
@@ -81,7 +83,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
 
         if (profileid.equals(firebaseUser.getUid())){
-            edit_profile.setText("Edit ProFile");
+            edit_profile.setText("Edit Profile");
         }else {
             checkFollow();
             saved_fotos.setVisibility(View.GONE);
@@ -139,7 +141,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 String btn = edit_profile.getText().toString();
 
                 if (btn.equals("Edit Profile")){
-                    // go to edit profile
+                    startActivity(new Intent(getContext(), EditProfileActivity.class));
                 }else if (btn.equals("follow")){
                     FirebaseDatabase.getInstance().getReference().child("Follow")
                             .child(firebaseUser.getUid())
