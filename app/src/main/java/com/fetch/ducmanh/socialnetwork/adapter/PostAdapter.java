@@ -68,7 +68,21 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHoder>{
         isLiked(post.getPostid(),holder.like);
         nrLike(holder.likes,post.getPostid());
         getComment(post.getPostid(),holder.comments);
+        isSaved(post.getPostid(),holder.save);
 
+
+        holder.save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.save.getTag().equals("save")){
+                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseUser.getUid())
+                            .child(post.getPostid()).setValue(true);
+                }else {
+                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseUser.getUid())
+                            .child(post.getPostid()).removeValue();
+                }
+            }
+        });
 
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,6 +236,33 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHoder>{
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 comments.setText("View all " +dataSnapshot.getChildrenCount() + " Comments");
+            }
+
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void isSaved(final String postid, final ImageView imageView){
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Saves")
+                .child(firebaseUser.getUid());
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child(postid).exists()){
+                    imageView.setImageResource(R.drawable.ic_save_black);
+                    imageView.setTag("saved");
+                }else {
+                    imageView.setImageResource(R.drawable.ic_save);
+                    imageView.setTag("save");
+                }
             }
 
 
