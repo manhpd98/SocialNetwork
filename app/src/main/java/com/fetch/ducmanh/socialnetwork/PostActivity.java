@@ -155,7 +155,7 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
             imageUri = result.getUri();
             image_added.setImageURI(imageUri);
         }else {
-            Toast.makeText(this, "Bài đăng đã bị lỗi!!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Bài đăng đã bị lỗi!!", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(PostActivity.this,MainActivity.class));
             finish();
         }

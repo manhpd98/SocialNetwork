@@ -65,7 +65,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHoder>{
 
         publisherInfo(holder.image_profile,holder.username,holder.publisher,post.getPublisher());
 
-        isLike(post.getPostid(),holder.like);
+        isLiked(post.getPostid(),holder.like);
         nrLike(holder.likes,post.getPostid());
         getComment(post.getPostid(),holder.comments);
 
@@ -166,7 +166,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHoder>{
         });
 
     }
-    private void isLike(String postid, final ImageView imageView){
+    private void isLiked(String postid, final ImageView imageView){
 
         final FirebaseUser  firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -178,12 +178,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHoder>{
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(firebaseUser.getUid()).exists()){
                     imageView.setImageResource(R.drawable.ic_liked);
-                    imageView.setTag("Liked");
+                    imageView.setTag("liked");
                 }else {
                     imageView.setImageResource(R.drawable.ic_like);
-                    imageView.setTag("Like");
+                    imageView.setTag("like");
                 }
             }
+
 
 
 
