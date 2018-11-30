@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.fetch.ducmanh.socialnetwork.CommentsActivity;
 import com.fetch.ducmanh.socialnetwork.FollowersActivity;
 import com.fetch.ducmanh.socialnetwork.R;
@@ -61,7 +62,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHoder>{
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final Post post = mPost.get(position);
 
-        Glide.with(mContext).load(post.getPostimage()).into(holder.post_image);
+        Glide.with(mContext).load(post.getPostimage())
+                .apply(new RequestOptions().placeholder(R.drawable.placeholder)).into(holder.post_image);
 
         if (post.getDescription().equals("")){
             holder.description.setVisibility(View.GONE);

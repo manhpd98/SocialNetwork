@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.fetch.ducmanh.socialnetwork.EditProfileActivity;
 import com.fetch.ducmanh.socialnetwork.FollowersActivity;
+import com.fetch.ducmanh.socialnetwork.OptionsActivity;
 import com.fetch.ducmanh.socialnetwork.R;
 import com.fetch.ducmanh.socialnetwork.adapter.MyFotoAdapter;
 import com.fetch.ducmanh.socialnetwork.model.Post;
@@ -134,6 +135,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         saved_fotos.setOnClickListener(this);
         followers.setOnClickListener(this);
         following.setOnClickListener(this);
+        options.setOnClickListener(this);
     }
 
 
@@ -186,6 +188,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 intentFollowing.putExtra("id",profileid);
                 intentFollowing.putExtra("title","following");
                 startActivity(intentFollowing);
+                break;
+            case R.id.options:
+                Intent intentOptions = new Intent(getContext(), OptionsActivity.class);
+                startActivity(intentOptions);
                 break;
         }
     }
