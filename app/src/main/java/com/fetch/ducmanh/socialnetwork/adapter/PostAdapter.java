@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.fetch.ducmanh.socialnetwork.CommentsActivity;
+import com.fetch.ducmanh.socialnetwork.FollowersActivity;
 import com.fetch.ducmanh.socialnetwork.R;
 import com.fetch.ducmanh.socialnetwork.fragment.PostDetailFragment;
 import com.fetch.ducmanh.socialnetwork.fragment.ProfileFragment;
@@ -172,6 +173,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHoder>{
                 Intent intent = new Intent(mContext, CommentsActivity.class);
                 intent.putExtra("postid",post.getPostid());
                 intent.putExtra("publisherid",post.getPublisher());
+                mContext.startActivity(intent);
+            }
+        });
+
+
+        holder.likes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, FollowersActivity.class);
+                intent.putExtra("id",post.getPostid());
+                intent.putExtra("title","likes");
                 mContext.startActivity(intent);
             }
         });

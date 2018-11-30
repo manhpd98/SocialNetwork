@@ -30,7 +30,9 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".CommentsActivity" />
-        <activity android:name=".EditProfileActivity"/>
+        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".FollowersActivity" />
+        <activity android:name=".OptionsActivity"></activity>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.fetch.ducmanh.socialnetwork.adapter;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.fetch.ducmanh.socialnetwork.MainActivity;
 import com.fetch.ducmanh.socialnetwork.R;
 import com.fetch.ducmanh.socialnetwork.fragment.ProfileFragment;
 import com.fetch.ducmanh.socialnetwork.model.User;
@@ -36,11 +38,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHoder> {
 
     private FirebaseUser firebaseUser;
 
+    private boolean isFragment;
 
-
-    public UserAdapter(Context mContext, List<User> mUsers) {
+    public UserAdapter(Context mContext, List<User> mUsers,boolean isFragment) {
         this.mContext = mContext;
         this.mUsers = mUsers;
+        this.isFragment = isFragment;
     }
 
 
@@ -74,12 +77,19 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHoder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS",Context.MODE_PRIVATE).edit();
-                editor.putString("profileid",user.getId());
-                editor.apply();
+                if (isFragment){
+                    SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS",Context.MODE_PRIVATE).edit();
+                    editor.putString("profileid",user.getId());
+                    editor.apply();
 
-                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container,new ProfileFragment()).commit();
+                    ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container,new ProfileFragment()).commit();
+                }else {
+                    Intent intent = new Intent(mContext, MainActivity.class);
+                    intent.putExtra("publisherid",user.getId());
+                    mContext.startActivity(intent);
+                }
+
             }
         });
         holder.btn_follow.setOnClickListener(new View.OnClickListener() {

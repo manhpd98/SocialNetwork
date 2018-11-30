@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-    Fragment selectedFragment = null;
 
 
 
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemReselectedListener(navigationItemReselectedListener);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemReselectedListener);
 
         Bundle intent = getIntent().getExtras();
         if (intent != null) {
@@ -35,9 +34,8 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
             editor.putString("profileid", publisher);
             editor.apply();
-
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
-        }else {
+        } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
         }
 
@@ -46,33 +44,69 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private BottomNavigationView.OnNavigationItemReselectedListener navigationItemReselectedListener = new BottomNavigationView.OnNavigationItemReselectedListener() {
-        @Override
-        public void onNavigationItemReselected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.nav_home:
-                    selectedFragment = new HomeFragment();
-                    break;
-                case R.id.nav_search:
-                    selectedFragment = new SearchFragment();
-                    break;
-                case R.id.nav_add:
-                    selectedFragment = null;
-                    startActivity(new Intent(MainActivity.this, PostActivity.class));
-                    break;
-                case R.id.nav_heart:
-                    selectedFragment = new NotificationFragment();
-                    break;
-                case R.id.nav_profile:
-                    SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
-                    editor.putString("profileid", FirebaseAuth.getInstance().getCurrentUser().getUid());
-                    editor.apply();
-                    selectedFragment = new ProfileFragment();
-                    break;
-            }
-            if (selectedFragment != null) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-            }
-        }
-    };
+    private BottomNavigationView.OnNavigationItemSelectedListener navigationItemReselectedListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment selectedFragment = null;
+                    switch (item.getItemId()) {
+                        case R.id.nav_home:
+                            selectedFragment = new HomeFragment();
+                            break;
+                        case R.id.nav_search:
+                            selectedFragment = new SearchFragment();
+                            break;
+                        case R.id.nav_add:
+                            selectedFragment = null;
+                            startActivity(new Intent(MainActivity.this, PostActivity.class));
+                            break;
+                        case R.id.nav_heart:
+                            selectedFragment = new NotificationFragment();
+                            break;
+                        case R.id.nav_profile:
+                            SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
+                            editor.putString("profileid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                            editor.apply();
+                            selectedFragment = new ProfileFragment();
+                            break;
+                    }
+                    if (selectedFragment != null) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    }
+                    return true;
+                }
+            };
+
+//    private BottomNavigationView.OnNavigationItemReselectedListener navigationItemReselectedListener =
+//            new BottomNavigationView.OnNavigationItemReselectedListener() {
+//        @Override
+//        public void onNavigationItemReselected(@NonNull MenuItem item) {
+//            Fragment selectedFragment = null;
+//            switch (item.getItemId()) {
+//                case R.id.nav_home:
+//                    selectedFragment = new HomeFragment();
+//                    break;
+//                case R.id.nav_search:
+//                    selectedFragment = new SearchFragment();
+//                    break;
+//                case R.id.nav_add:
+//                    selectedFragment = null;
+//                    startActivity(new Intent(MainActivity.this, PostActivity.class));
+//                    break;
+//                case R.id.nav_heart:
+//                    selectedFragment = new NotificationFragment();
+//                    break;
+//                case R.id.nav_profile:
+//                    SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
+//                    editor.putString("profileid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+//                    editor.apply();
+//                    selectedFragment = new ProfileFragment();
+//                    break;
+//            }
+//            if (selectedFragment != null) {
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+//            }
+//
+//        }
+//    };
 }
