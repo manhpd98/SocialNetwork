@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     android:gravity="center"
-    android:padding="12dp"
     android:orientation="vertical"
+    android:padding="12dp"
     tools:context=".StartActivity">
+
+
     <Button
         android:id="@+id/btnLogin"
-        android:text="LogIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/button_background"
-        android:textColor="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:text="LogIn"
+        android:textColor="#fff" />
 
     <Button
         android:id="@+id/btnRegister"
-        android:text="Register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/button_background"
-        android:textColor="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:text="Register"
+        android:textColor="#fff" />
 </LinearLayout>

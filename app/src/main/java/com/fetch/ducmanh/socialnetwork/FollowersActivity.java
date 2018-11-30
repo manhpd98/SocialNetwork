@@ -41,10 +41,10 @@ public class FollowersActivity extends AppCompatActivity {
             case "likes":
                 getLikes();
                 break;
-            case "following":
+            case "Đang theo dõi":
                 getFollowing();
                 break;
-            case "followers":
+            case "Người theo dõi":
                 getFollowers();
                 break;
         }
@@ -76,7 +76,7 @@ public class FollowersActivity extends AppCompatActivity {
 
 
     private void getFollowing() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow").child(id).child("following");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow").child(id).child("Đang theo dõi");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -100,7 +100,7 @@ public class FollowersActivity extends AppCompatActivity {
 
 
     private void getFollowers() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow").child(id).child("followers");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow").child(id).child("Người theo dõi");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

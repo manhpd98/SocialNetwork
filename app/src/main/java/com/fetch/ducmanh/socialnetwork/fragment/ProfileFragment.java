@@ -86,7 +86,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
 
         if (profileid.equals(firebaseUser.getUid())){
-            edit_profile.setText("Edit Profile");
+            edit_profile.setText("Sửa thông tin của bạn");
         }else {
             checkFollow();
             saved_fotos.setVisibility(View.GONE);
@@ -146,26 +146,26 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             case R.id.edit_profile:
                 String btn = edit_profile.getText().toString();
 
-                if (btn.equals("Edit Profile")){
+                if (btn.equals("Sửa thông tin của bạn")){
                     startActivity(new Intent(getContext(), EditProfileActivity.class));
-                }else if (btn.equals("follow")){
+                }else if (btn.equals("Theo dõi")){
                     FirebaseDatabase.getInstance().getReference().child("Follow")
                             .child(firebaseUser.getUid())
-                            .child("following")
+                            .child("Đang theo dõi")
                             .child(profileid).setValue(true);
                     FirebaseDatabase.getInstance().getReference().child("Follow")
                             .child(profileid)
-                            .child("followers")
+                            .child("Người theo dõi")
                             .child(firebaseUser.getUid()).setValue(true);
                     addNotifications();
-                }else if(btn.equals("following")){
+                }else if(btn.equals("Đang theo dõi")){
                     FirebaseDatabase.getInstance().getReference().child("Follow")
                             .child(firebaseUser.getUid())
-                            .child("following")
+                            .child("Đang theo dõi")
                             .child(profileid).removeValue();
                     FirebaseDatabase.getInstance().getReference().child("Follow")
                             .child(profileid)
-                            .child("followers")
+                            .child("Người theo dõi")
                             .child(firebaseUser.getUid()).removeValue();
                 }
                 break;
@@ -180,13 +180,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             case R.id.followers:
                 Intent intent = new Intent(getContext(), FollowersActivity.class);
                 intent.putExtra("id",profileid);
-                intent.putExtra("title","followers");
+                intent.putExtra("title","Người theo dõi");
                 startActivity(intent);
                 break;
             case R.id.following:
                 Intent intentFollowing = new Intent(getContext(), FollowersActivity.class);
                 intentFollowing.putExtra("id",profileid);
-                intentFollowing.putExtra("title","following");
+                intentFollowing.putExtra("title","Đang theo dõi");
                 startActivity(intentFollowing);
                 break;
             case R.id.options:
@@ -203,7 +203,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         HashMap<String,Object> hashMap = new HashMap<>();
 
         hashMap.put("userid",firebaseUser.getUid());
-        hashMap.put("text","started following you");
+        hashMap.put("text","bắt đầu theo dõi bạn");
         hashMap.put("postid","");
         hashMap.put("ispost",false);
 
@@ -240,15 +240,15 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private void checkFollow(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow")
-                .child(firebaseUser.getUid()).child("following");
+                .child(firebaseUser.getUid()).child("Đang theo dõi");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(profileid).exists()){
-                    edit_profile.setText("following");
+                    edit_profile.setText("Đang theo dõi");
                 }else {
-                    edit_profile.setText("follow");
+                    edit_profile.setText("Theo dõi");
                 }
             }
 
@@ -264,7 +264,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private void getFollowers(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                .child("Follow").child(profileid).child("followers");
+                .child("Follow").child(profileid).child("Người theo dõi");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -281,7 +281,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         });
 
         DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference()
-                .child("Follow").child(profileid).child("following");
+                .child("Follow").child(profileid).child("Đang theo dõi");
 
         reference1.addValueEventListener(new ValueEventListener() {
             @Override
@@ -303,16 +303,16 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            int i = 0;
-            for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                Post post = snapshot.getValue(Post.class);
-                if (post.getPublisher().equals(profileid)){
-                    i++;
+                int i = 0;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Post post = snapshot.getValue(Post.class);
+                    if (post.getPublisher().equals(profileid)){
+                        i++;
+                    }
+
                 }
 
-            }
-
-            posts.setText(""+i);
+                posts.setText(""+i);
             }
 
 

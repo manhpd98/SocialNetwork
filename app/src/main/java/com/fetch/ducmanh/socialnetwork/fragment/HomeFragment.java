@@ -54,17 +54,18 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(postAdapter);
 
         progressBar = view.findViewById(R.id.progress_circular);
-
         checkFollowing();
         return view;
     }
+
+
 
     private void checkFollowing(){
         followingList = new ArrayList<>();
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("following");
+                .child("Đang theo dõi");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -116,3 +117,4 @@ public class HomeFragment extends Fragment {
         });
     }
 }
+

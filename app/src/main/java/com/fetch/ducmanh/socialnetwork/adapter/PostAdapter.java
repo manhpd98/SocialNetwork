@@ -285,7 +285,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHoder>{
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                likes.setText(dataSnapshot.getChildrenCount()+" likes");
+                likes.setText(dataSnapshot.getChildrenCount()+" lượt thích");
             }
 
 
@@ -303,7 +303,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHoder>{
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                comments.setText("View all " +dataSnapshot.getChildrenCount() + " Comments");
+                comments.setText("Có " +dataSnapshot.getChildrenCount() + " bình luận");
             }
 
 
@@ -349,7 +349,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHoder>{
         HashMap<String,Object> hashMap = new HashMap<>();
 
         hashMap.put("userid",firebaseUser.getUid());
-        hashMap.put("text","liked your post");
+        hashMap.put("text","thích bài viết của bạn");
         hashMap.put("postid",postid);
         hashMap.put("ispost",true);
 

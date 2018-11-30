@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,39 +19,47 @@
                 android:id="@+id/image_profile"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/ic_launcher" />
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/ic_launcher"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="2dp" />
 
             <TextView
                 android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="Username"
                 android:layout_marginLeft="10dp"
-                android:textColor="@color/colorPrimary"
+                android:text="Username"
+                android:textColor="@color/colorBlack"
                 android:textSize="16dp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
-            android:textSize="16sp"
-            android:padding="10dp"
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text="Description"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp"
             android:textStyle="bold" />
+
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/post_image"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="1:1" />
+                app:layout_constraintDimensionRatio="1:1"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp"
+                tools:ignore="MissingConstraints" />
+
         </android.support.constraint.ConstraintLayout>
 
 
@@ -97,9 +106,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="Username"
-            android:visibility="gone"
             android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
 
         <TextView

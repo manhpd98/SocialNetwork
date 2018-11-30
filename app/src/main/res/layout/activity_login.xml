@@ -6,6 +6,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp"
+    android:background="@drawable/bg"
     tools:context=".LoginActivity">
 
     <EditText
@@ -15,6 +16,7 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/edittext_background"
         android:hint="Email"
+        android:textColorHint="#fff"
         android:padding="10dp" />
 
     <EditText
@@ -24,6 +26,7 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/edittext_background"
         android:hint="Password"
+        android:textColorHint="#fff"
         android:inputType="textPassword"
         android:padding="10dp" />
 
@@ -34,12 +37,13 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/button_background"
         android:text="Login"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="#fff" />
 
     <TextView
         android:id="@+id/tvSignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:textColor="#fff"
         android:text="Don't have an account? Sign Up" />
 </LinearLayout>

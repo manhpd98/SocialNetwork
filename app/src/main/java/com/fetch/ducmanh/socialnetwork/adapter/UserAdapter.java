@@ -1,6 +1,5 @@
 package com.fetch.ducmanh.socialnetwork.adapter;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -59,13 +58,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHoder> {
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHoder holder, int position) {
-            firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-            final User user = mUsers.get(position);
+        final User user = mUsers.get(position);
 
-            holder.btn_follow.setVisibility(View.VISIBLE);
-            holder.username.setText(user.getUsername());
-            holder.fullname.setText(user.getFullname());
+        holder.btn_follow.setVisibility(View.VISIBLE);
+        holder.username.setText(user.getUsername());
+        holder.fullname.setText(user.getFullname());
 
         Glide.with(mContext).load(user.getImageurl()).into(holder.image_profile);
 
@@ -95,27 +94,27 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHoder> {
         holder.btn_follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (holder.btn_follow.getText().toString().equals("follow")){
+                if (holder.btn_follow.getText().toString().equals("Theo dõi")){
 
                     FirebaseDatabase.getInstance().getReference().child("Follow")
                             .child(firebaseUser.getUid())
-                            .child("following")
+                            .child("Đang theo dõi")
                             .child(user.getId()).setValue(true);
 
                     FirebaseDatabase.getInstance().getReference().child("Follow")
                             .child(user.getId())
-                            .child("followers")
+                            .child("Người theo dõi")
                             .child(firebaseUser.getUid()).setValue(true);
                     addNotifications(user.getId());
                 }else {
                     FirebaseDatabase.getInstance().getReference().child("Follow")
                             .child(firebaseUser.getUid())
-                            .child("following")
+                            .child("Đang theo dõi")
                             .child(user.getId()).removeValue();
 
                     FirebaseDatabase.getInstance().getReference().child("Follow")
                             .child(user.getId())
-                            .child("followers")
+                            .child("Người theo dõi")
                             .child(firebaseUser.getUid()).removeValue();
                 }
             }
@@ -148,15 +147,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHoder> {
 
     private void isFollowing(final String userid, final Button button){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                .child("Follow").child(firebaseUser.getUid()).child("following");
+                .child("Follow").child(firebaseUser.getUid()).child("Đang theo dõi");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(userid).exists()){
-                    button.setText("following");
+                    button.setText("Đang theo dõi");
                 }else {
-                    button.setText("follow");
+                    button.setText("Theo dõi");
                 }
             }
 
@@ -176,7 +175,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHoder> {
         HashMap<String,Object> hashMap = new HashMap<>();
 
         hashMap.put("userid",firebaseUser.getUid());
-        hashMap.put("text","starts following you");
+        hashMap.put("text","Bắt đầu theo dõi bạn ");
         hashMap.put("postid","");
         hashMap.put("ispost",false);
         reference.push().setValue(hashMap);

@@ -38,7 +38,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@id/close"
-                    android:text="Edit Profile"
+                    android:text="Sửa thông tin"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -51,7 +51,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
-                    android:text="SAVE"
+                    android:text="LƯU"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16dp" />
             </RelativeLayout>
@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Change Photo"
+            android:text="Chọn ảnh của bạn"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
 
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="FullName"
+            android:hint="Họ và tên"
             app:met_floatingLabel="normal" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -95,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="UserName"
+            android:hint="Tên"
             app:met_floatingLabel="normal" />
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/bio"
