@@ -73,8 +73,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 if (TextUtils.isEmpty(str_name) ||TextUtils.isEmpty(str_fullname)
                         || TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_password)){
+                    progressDialog.dismiss();
                     Toast.makeText(this, "Bạn cần điền đủ thông tin!!", Toast.LENGTH_SHORT).show();
                 }else if (str_password.length()<6){
+                    progressDialog.dismiss();
                     Toast.makeText(this, "Mật khẩu không ít hơn 6 ký tự!! ", Toast.LENGTH_SHORT).show();
                 }else {
                     register(str_name,str_fullname,str_email,str_password);

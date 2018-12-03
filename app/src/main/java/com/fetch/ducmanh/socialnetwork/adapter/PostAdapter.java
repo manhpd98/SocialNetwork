@@ -1,21 +1,25 @@
 package com.fetch.ducmanh.socialnetwork.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.fetch.ducmanh.socialnetwork.CommentsActivity;
 import com.fetch.ducmanh.socialnetwork.FollowersActivity;
+import com.fetch.ducmanh.socialnetwork.MainActivity;
 import com.fetch.ducmanh.socialnetwork.R;
 import com.fetch.ducmanh.socialnetwork.fragment.PostDetailFragment;
 import com.fetch.ducmanh.socialnetwork.fragment.ProfileFragment;
@@ -202,14 +206,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHoder>{
 
     public class ViewHoder extends RecyclerView.ViewHolder{
 
-        public ImageView image_profile,post_image,like,comment,save;
+        public ImageView image_profile,post_image,like,comment,save,more;
         private TextView username,likes,description,publisher,comments;
 
 
         public ViewHoder(View itemView) {
             super(itemView);
 
-
+            more = itemView.findViewById(R.id.more);
             image_profile = itemView.findViewById(R.id.image_profile);
             post_image = itemView.findViewById(R.id.post_image);
             like = itemView.findViewById(R.id.like);

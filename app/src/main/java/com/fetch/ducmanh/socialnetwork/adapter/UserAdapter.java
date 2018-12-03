@@ -153,9 +153,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHoder> {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(userid).exists()){
-                    button.setText("Đang theo dõi");
+                    button.setText(R.string.dang_theo_doi);
                 }else {
-                    button.setText("Theo dõi");
+                    button.setText(R.string.theodoi);
                 }
             }
 

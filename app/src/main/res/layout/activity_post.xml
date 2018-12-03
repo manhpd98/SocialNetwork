@@ -37,7 +37,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp"
-                    android:text="Post"
+                    android:text="@string/post"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
 
@@ -58,17 +58,18 @@
             android:layout_gravity="center"
             android:scaleType="centerInside"
             android:src="@mipmap/ic_launcher"
-            />
+            android:contentDescription="@string/todo" />
 
         <EditText
             android:id="@+id/description"
             android:layout_marginTop="15dp"
             android:maxLines="5"
-            android:hint="Description"
+            android:hint="@string/description"
             android:padding="10dp"
             android:background="@drawable/button_background"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="text" />
     </LinearLayout>
 
 </LinearLayout>

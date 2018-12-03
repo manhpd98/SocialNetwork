@@ -28,7 +28,8 @@
                     android:layout_height="wrap_content"
                     android:lines="1"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="RelativeOverlap" />
 
                 <ImageView
                     android:id="@+id/options"
@@ -36,7 +37,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_options" />
+                    android:src="@drawable/ic_options"
+                    android:contentDescription="@string/todo" />
 
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>
@@ -69,8 +71,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="4dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="4dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -97,13 +99,13 @@
                                 android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Bài viết" />
+                                android:text="@string/bai_viet" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginStart="20dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -119,13 +121,13 @@
                                 android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Người theo dõi" />
+                                android:text="@string/nguoi_theo_doi" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginStart="20dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -142,7 +144,7 @@
                                 android:maxLines="1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Đang theo dõi" />
+                                android:text="@string/dang_theo_doi" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -200,7 +202,8 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="?android:attr/buttonBarButtonStyle"/>
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:contentDescription="@string/todo" />
 
                 <ImageButton
                     android:src="@drawable/ic_save"
@@ -208,7 +211,8 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="?android:attr/buttonBarButtonStyle"/>
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:contentDescription="@string/todo" />
 
             </LinearLayout>
 

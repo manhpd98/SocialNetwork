@@ -21,16 +21,17 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_search_light" />
+                android:src="@drawable/ic_search_light"
+                android:contentDescription="@string/todo" />
 
             <EditText
                 android:id="@+id/search_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
                 android:background="@android:color/transparent"
-                android:hint="Tìm kiếm bạn bè" />
+                android:hint="@string/tim_kiem_ban_be"
+                android:inputType="text" />
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>

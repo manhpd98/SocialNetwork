@@ -8,16 +8,20 @@
     android:padding="10dp"
     android:background="@drawable/bg"
     tools:context=".LoginActivity">
-
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo" />
     <EditText
         android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/edittext_background"
-        android:hint="Email"
-        android:textColorHint="#fff"
-        android:padding="10dp" />
+        android:hint="@string/email"
+        android:padding="10dp"
+        android:textColor="@color/colorwhite"
+        android:textColorHint="@color/colorwhite" />
 
     <EditText
         android:id="@+id/edtPassword"
@@ -25,8 +29,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/edittext_background"
-        android:hint="Password"
-        android:textColorHint="#fff"
+        android:hint="@string/password"
+        android:textColor="@color/colorwhite"
+        android:textColorHint="@color/colorwhite"
         android:inputType="textPassword"
         android:padding="10dp" />
 
@@ -36,8 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/button_background"
-        android:text="Login"
-        android:textColor="#fff" />
+        android:text="@string/login"
+        android:textColor="@color/colorwhite" />
 
     <TextView
         android:id="@+id/tvSignup"
@@ -45,5 +50,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textColor="#fff"
-        android:text="Don't have an account? Sign Up" />
+        android:text="@string/don_t_have_an_account_sign_up" />
 </LinearLayout>

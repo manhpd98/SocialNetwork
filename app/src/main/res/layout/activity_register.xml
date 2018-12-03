@@ -9,26 +9,31 @@
     android:background="@drawable/bg"
     tools:context=".RegisterActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/logo" />
     <EditText
         android:id="@+id/edtUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:textColor="#fff"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/colorwhite"
         android:background="@drawable/edittext_background"
-        android:hint="UserName"
-        android:textColorHint="#fff"
-        android:padding="10dp" />
+        android:hint="@string/username"
+        android:textColorHint="@color/colorwhite"
+        android:padding="10dp"/>
 
     <EditText
         android:id="@+id/edtFullname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:textColorHint="#fff"
-        android:textColor="#fff"
+        android:textColorHint="@color/colorwhite"
+        android:textColor="@color/colorwhite"
         android:background="@drawable/edittext_background"
-        android:hint="Full Name"
+        android:hint="@string/full_name"
         android:padding="10dp" />
 
     <EditText
@@ -36,10 +41,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:textColorHint="#fff"
-        android:textColor="#fff"
+        android:textColorHint="@color/colorwhite"
+        android:textColor="@color/colorwhite"
         android:background="@drawable/edittext_background"
-        android:hint="Email"
+        android:hint="@string/email"
         android:padding="10dp" />
 
     <EditText
@@ -48,9 +53,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/edittext_background"
-        android:hint="Password"
-        android:textColorHint="#fff"
-        android:textColor="#fff"
+        android:hint="@string/password"
+        android:textColorHint="@color/colorwhite"
+        android:textColor="@color/colorwhite"
         android:inputType="textPassword"
         android:padding="10dp" />
 
@@ -61,14 +66,14 @@
         android:layout_marginTop="15dp"
 
         android:background="@drawable/button_background"
-        android:text="Register"
-        android:textColor="#fff" />
+        android:text="@string/register"
+        android:textColor="@color/colorwhite" />
 
     <TextView
         android:id="@+id/tvLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textColor="#fff"
-        android:text="Already have an account? Log In" />
+        android:textColor="@color/colorwhite"
+        android:text="@string/already_have_an_account_log_in" />
 </LinearLayout>

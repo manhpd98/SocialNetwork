@@ -66,6 +66,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String str_email = edtEmail.getText().toString();
                 String str_password = edtPassword.getText().toString();
                 if (TextUtils.isEmpty(str_email) || TextUtils.isEmpty(str_password)) {
+                    progressDialog.dismiss();
                     Toast.makeText(this, "Bạn cần điền đủ thông tin!!", Toast.LENGTH_SHORT).show();
                 } else {
                     auth.signInWithEmailAndPassword(str_email, str_password)
@@ -95,6 +96,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     } else {
                                         progressDialog.dismiss();
                                         Toast.makeText(LoginActivity.this, "Đăng nhập thất bại!!", Toast.LENGTH_SHORT).show();
+
                                     }
                                 }
                             });

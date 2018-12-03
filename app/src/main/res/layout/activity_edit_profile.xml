@@ -29,7 +29,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_close" />
+                    android:src="@drawable/ic_close"
+                    android:contentDescription="@string/todo" />
 
                 <TextView
 
@@ -38,7 +39,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@id/close"
-                    android:text="Sửa thông tin"
+                    android:text="@string/sua_thong_tin"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -48,12 +49,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:text="LƯU"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/luu"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>
 
@@ -78,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Chọn ảnh của bạn"
+            android:text="@string/chon_anh_cua_ban"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
 
@@ -87,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Họ và tên"
+            android:hint="@string/ho_va_ten"
             app:met_floatingLabel="normal" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -95,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Tên"
+            android:hint="@string/ten"
             app:met_floatingLabel="normal" />
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/bio"

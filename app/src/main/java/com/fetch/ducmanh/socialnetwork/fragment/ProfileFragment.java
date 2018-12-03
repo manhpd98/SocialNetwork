@@ -246,9 +246,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(profileid).exists()){
-                    edit_profile.setText("Đang theo dõi");
+                    edit_profile.setText(R.string.dang_theo_doi);
                 }else {
-                    edit_profile.setText("Theo dõi");
+                    edit_profile.setText(R.string.theodoi);
                 }
             }
 
