@@ -3,6 +3,7 @@ package com.fetch.ducmanh.socialnetwork.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.fetch.ducmanh.socialnetwork.R;
 import com.fetch.ducmanh.socialnetwork.adapter.PostAdapter;
 import com.fetch.ducmanh.socialnetwork.model.Post;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +36,7 @@ public class HomeFragment extends Fragment {
     private List<Post> postList;
 
     private List<String> followingList;
+    String idUsers;
 
     ProgressBar progressBar;
     @Override
@@ -55,7 +58,25 @@ public class HomeFragment extends Fragment {
 
         progressBar = view.findViewById(R.id.progress_circular);
         checkFollowing();
+
         return view;
+    }
+
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        showPostsUser();
+    }
+
+
+
+    private void showPostsUser() {
+
+        FirebaseUser firebaseUse = FirebaseAuth.getInstance().getCurrentUser();
+
+        idUsers = firebaseUse.getUid();
     }
 
 
@@ -94,14 +115,19 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 postList.clear();
-
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Post post = snapshot.getValue(Post.class);
-                    for (String id : followingList){
-                        if (post.getPublisher().equals(id)){
-                            postList.add(post);
+                    if (post.getPublisher().equals(idUsers)){
+                        postList.add(post);
+                    }else {
+                        for (String id : followingList){
+                            if (post.getPublisher().equals(id)){
+                                postList.add(post);
+                            }
                         }
                     }
+
+
                 }
 
                 postAdapter.notifyDataSetChanged();
@@ -116,5 +142,6 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
 }
 
