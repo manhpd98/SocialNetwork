@@ -125,7 +125,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 updateProfile(fullname.getText().toString(),
                         username.getText().toString(),
                         bio.getText().toString());
-                Toast.makeText(this, "Bạn đã sửa thành công!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Sửa thành công!!", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -151,7 +151,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
     private void uploadImage(){
         final ProgressDialog pd = new ProgressDialog(this);
-        pd.setMessage("Uploading");
+        pd.setMessage("Đăng đăng!!");
         pd.show();
 
         if (mImageUri !=null){

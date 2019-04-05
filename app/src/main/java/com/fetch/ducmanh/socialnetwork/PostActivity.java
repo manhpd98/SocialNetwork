@@ -89,7 +89,7 @@ public class PostActivity extends AppCompatActivity implements View.OnClickListe
 
     private void uploadImage() {
         final ProgressDialog pd = new ProgressDialog(this);
-        pd.setMessage("Posting");
+        pd.setMessage("Đăng đăng!!");
         pd.show();
 
 

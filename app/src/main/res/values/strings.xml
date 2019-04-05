@@ -26,10 +26,11 @@
     <string name="nguoi_theo_doi">Người theo dõi</string>
     <string name="dang_theo_doi">Đang theo dõi</string>
     <string name="tim_kiem_ban_be">Tìm kiếm bạn bè</string>
-    <string name="description">Description</string>
+    <string name="description">Nội Dung</string>
     <string name="like">10 like</string>
     <string name="bl">Có 20 bình luận</string>
     <string name="binh_luan">Bình luận</string>
     <string name="theodoi">Theo dõi</string>
     <string name="bo_theo_dõi">Bỏ theo dõi</string>
+    <string name="bio">Tiểu sử</string>
 </resources>

@@ -35,7 +35,7 @@ public class CommentsActivity extends AppCompatActivity {
     private CommentAdapter commentAdapter;
     private List<Comment> commentList;
 
-    EditText addComment;
+    EditText addcomment;
     ImageView image_profile;
     TextView post;
 
@@ -43,112 +43,15 @@ public class CommentsActivity extends AppCompatActivity {
     String publisherid;
 
     FirebaseUser firebaseUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments);
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        toolbar();
-        initviews();
-        recyclerV();
-        Intent intent = getIntent();
-        postid =intent.getStringExtra("postid");
-        publisherid = intent.getStringExtra("publisherid");
-
-        post.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (addComment.getText().toString().equals("")){
-                    Toast.makeText(CommentsActivity.this, "Bạn cần điền đầy đủ thông tin!!", Toast.LENGTH_SHORT).show();
-                }else {
-                    addComments();
-                }
-            }
-        });
-
-
-
-        getImage();
-        readComments();
-    }
-
-
-
-    private void recyclerV() {
-
-        recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        commentList = new ArrayList<>();
-        commentAdapter = new CommentAdapter(this,commentList);
-        recyclerView.setAdapter(commentAdapter);
-    }
-
-
-
-    private void addComments() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Comments").child(postid);
-        HashMap<String,Object> map = new HashMap<>();
-
-        map.put("comment",addComment.getText().toString());
-        map.put("publisher",firebaseUser.getUid());
-
-        reference.push().setValue(map);
-        addNotifications();
-        addComment.setText("");
-    }
-
-
-    private void addNotifications(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(publisherid);
-
-        HashMap<String,Object> hashMap = new HashMap<>();
-
-        hashMap.put("userid",firebaseUser.getUid());
-        hashMap.put("text","commented: "  +addComment.getText().toString());
-        hashMap.put("postid",postid);
-        hashMap.put("ispost",true);
-
-        reference.push().setValue(hashMap);
-
-    }
-
-    private void getImage(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                Glide.with(getApplicationContext()).load(user.getImageurl()).into(image_profile);
-            }
-
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void initviews() {
-        addComment = findViewById(R.id.add_comment);
-        image_profile = findViewById(R.id.image_profile);
-        post = findViewById(R.id.post);
-    }
-
-
-
-    private void toolbar() {
-
         Toolbar toolbar = findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Bình luận");
+        getSupportActionBar().setTitle("Comments");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,16 +59,92 @@ public class CommentsActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        Intent intent = getIntent();
+        postid = intent.getStringExtra("postid");
+        publisherid = intent.getStringExtra("publisherid");
+
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
+        commentList = new ArrayList<>();
+        commentAdapter = new CommentAdapter(this, commentList, postid);
+        recyclerView.setAdapter(commentAdapter);
+
+        post = findViewById(R.id.post);
+        addcomment = findViewById(R.id.add_comment);
+        image_profile = findViewById(R.id.image_profile);
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (addcomment.getText().toString().equals("")){
+                    Toast.makeText(CommentsActivity.this, "You can't send empty message", Toast.LENGTH_SHORT).show();
+                } else {
+                    addComment();
+                }
+            }
+        });
+
+        getImage();
+        readComments();
+
     }
 
+    private void addComment(){
 
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Comments").child(postid);
 
-    private void readComments() {
+        String commentid = reference.push().getKey();
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("comment", addcomment.getText().toString());
+        hashMap.put("publisher", firebaseUser.getUid());
+        hashMap.put("commentid", commentid);
+
+        reference.child(commentid).setValue(hashMap);
+        addNotification();
+        addcomment.setText("");
+
+    }
+
+    private void addNotification(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(publisherid);
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("userid", firebaseUser.getUid());
+        hashMap.put("text", "commented: "+addcomment.getText().toString());
+        hashMap.put("postid", postid);
+        hashMap.put("ispost", true);
+
+        reference.push().setValue(hashMap);
+    }
+
+    private void getImage(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                Glide.with(getApplicationContext()).load(user.getImageurl()).into(image_profile);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void readComments(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Comments").child(postid);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 commentList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Comment comment = snapshot.getValue(Comment.class);
@@ -175,10 +154,8 @@ public class CommentsActivity extends AppCompatActivity {
                 commentAdapter.notifyDataSetChanged();
             }
 
-
-
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });

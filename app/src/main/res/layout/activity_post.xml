@@ -37,7 +37,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp"
-                    android:text="@string/post"
+                    android:text="@string/dang"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
 
